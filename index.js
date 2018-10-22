@@ -5,7 +5,6 @@ const app = express();
 app.use(express.json());
 
 movies = [
-
     { id:1 , name:'Big Mouth', genre:'Comedy' },
     { id:2 , name:'Manic', genre:'Drama' },
     { id:3 , name:'Venom', genre:'Sci-Fi' },
@@ -20,12 +19,15 @@ app.get('/', (req, res)=> {
 
 });
 
-app.get('/api/movies', (req, res)=>{
+app.get('/api/movies', (req, res)=> {
+
 res.send(movies);
+
 });
 
 
-app.get('/api/movies/:id', (req, res)=>{
+app.get('/api/movies/:id', (req, res)=> {
+
     const movie = movies.find(m => m.id === parseInt(req.params.id));
     if (!movie) {
         res.status(404).send('Id not found');
@@ -34,7 +36,7 @@ app.get('/api/movies/:id', (req, res)=>{
      res.send(movie);
 });
 
-app.post('/api/movies', (req, res)=>{
+app.post('/api/movies', (req, res)=> {
    
     const result = valiateCourse(req.body);
 
