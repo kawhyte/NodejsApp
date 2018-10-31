@@ -1,8 +1,13 @@
+const mongoose =  require('mongoose');
 const express = require('express');
-const Joi = require('joi');
+
 const app = express();
 const movies = require('./routes/movies');
 const home = require('./routes/home');
+
+mongoose.connect('mongodb://localhost/vidly')
+.then(()=> console.log('Connected to MongoDB'))
+.catch(err => console.error('could not connect to MongoDB'));
 
 app.use(express.json());
 app.use('/api/movies', movies);
