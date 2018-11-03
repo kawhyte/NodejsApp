@@ -1,25 +1,10 @@
+const {Movie,validateMovie}  = require('../models/movies');
 const mongoose =  require('mongoose');
 const express = require ('express');
 const router  = express.Router();
 const Joi = require('joi');
 
-const movieSchema = new mongoose.Schema({
- name:{
-     type: String,
-     required:true,
-     minlength: 3,
-     maxlength: 50
- },
- genre:{
-     type: String,
-     required:true,
-     minlength: 3,
-     maxlength: 50
- }
 
-});
-
-const  Movie = mongoose.model('Movie', movieSchema);
 
 /* movies = [
     { id:1 , name:'Big Mouth', genre:'Comedy' },
@@ -46,8 +31,7 @@ if (!movie) {
     res.send(movie);
 });
     
-router.post('/', async (req, res)=> {
-    
+router.post('/', async (req, res)=> {   
 const result = validateMovie(req.body);
 
 if(result.error){
@@ -98,12 +82,6 @@ return;
 res.send(movie);
 });
 
-function validateMovie(movie){
-    const schema ={
-        name: Joi.string().min(3).required(),
-        genre: Joi.string().min(3).required()
-        };
-        return Joi.validate( movie, schema);
-}
+
 
 module.exports = router;
