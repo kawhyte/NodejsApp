@@ -1,5 +1,5 @@
 //const customer  = require('../models/customers');
-const {Customer,validateCustomer}  = require('../models/customers');
+const {Customer,validateCustomer}  = require('../models/customer');
 const mongoose =  require('mongoose');
 const express = require ('express');
 const router  = express.Router();

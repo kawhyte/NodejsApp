@@ -1,10 +1,8 @@
-const {Movie,validateMovie}  = require('movieApp/models/movie');
+const {Movie,validateMovie}  = require('../models/movie');
+const {Genre}  = require('../models/genre');
 const mongoose =  require('mongoose');
 const express = require ('express');
 const router  = express.Router();
-const Joi = require('joi');
-
-
 
 /* movies = [
     { id:1 , name:'Big Mouth', movie:'Comedy' },
@@ -16,8 +14,8 @@ const Joi = require('joi');
 ] */
 
 router.get('/', async (req, res)=> {
-    const movie = await Movie.find().sort('name');
-    res.send(movie);
+    const movies = await Movie.find().sort('name');
+    res.send(movies);
 });
     
     
@@ -38,11 +36,16 @@ if(result.error){
     res.status(400).send(result.error.details[0].message);
     return;
 } 
-const genre =  await Genre.
+
+const genre =  await Genre.findById(req.body.genreId);
+if (!genre) {
+    res.status(400).send("Invalid genre");
+    return;
+}
 
 let movie =  new Movie( {
     title: req.body.title,
-    genre: {
+            genre: {
         _id: genre._id,
         name: genre.name,
     },

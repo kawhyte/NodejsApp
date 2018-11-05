@@ -1,4 +1,4 @@
-const {Genre,validateGenre}  = require('movieApp/models/genre');
+const {Genre,validateGenre}  = require('../models/genre');
 const mongoose =  require('mongoose');
 const express = require ('express');
 const router  = express.Router();
@@ -40,8 +40,7 @@ if(result.error){
 } 
 
 let genre =  new Genre( {
-    //name: req.body.name,
-    genre: req.body.genre
+    name: req.body.name
 });
 
 genre = await genre.save();
