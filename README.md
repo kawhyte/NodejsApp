@@ -1,2 +1,2 @@
 # Nodejs App
-Nodejs CRUD Movie app 
+Nodejs CRUD Genre app 
